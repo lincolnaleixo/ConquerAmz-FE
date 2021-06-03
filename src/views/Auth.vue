@@ -1,5 +1,5 @@
 <template>
-  <section id="auth" class="auth-wrapper pt-4">
+  <section class="auth-wrapper">
     <Login v-if="loginMode"></Login>
     <Register v-else></Register>
   </section>

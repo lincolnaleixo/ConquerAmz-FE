@@ -10,7 +10,7 @@
     <div id="main">
       <TopNav/>
       <div class="main-content container-fluid">
-        <div class="page-title">
+        <div class="page-title" v-if="!hideTitle">
           <h3>{{ $route.name }}</h3>
           <p class="text-subtitle text-muted">Some description about the page.</p>
         </div>
@@ -31,6 +31,11 @@ export default {
   components: {
     Sidebar,
     TopNav,
+  },
+  computed: {
+    hideTitle() {
+      return this.$route.path.includes('auth');
+    },
   },
 };
 </script>
