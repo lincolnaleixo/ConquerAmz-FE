@@ -1,26 +1,30 @@
 <template>
   <div id="sidebar" :class="{active: sidebarOpened}">
-    <div class="sidebar-wrapper active ps" >
+    <div class="sidebar-wrapper active ps">
       <div class="sidebar-header">
         <!-- Insert img -->
+        <img src="../assets/img/icon.png" alt="icon">
       </div>
       <div class="sidebar-menu">
         <ul class="menu">
-          <li class="sidebar-title">Main Menu</li>
+          <li class="sidebar-title text-left">Main Menu</li>
           <li class="sidebar-item">
-            <router-link :to="{path: '/'}" class="sidebar-link">
+            <router-link :to="{path: '/'}"
+                         class="sidebar-link">
               <b-icon icon="house"></b-icon>
               <span>Home</span>
             </router-link>
           </li>
           <li class="sidebar-item">
-            <router-link :to="{name: 'Register'}" class="sidebar-link">
+            <router-link :to="{name: 'Register'}"
+                         class="sidebar-link">
               <b-icon icon="person-plus"></b-icon>
               <span>Register</span>
             </router-link>
           </li>
           <li class="sidebar-item">
-            <router-link :to="{name: 'Login'}" class="sidebar-link">
+            <router-link :to="{name: 'Login'}"
+                         class="sidebar-link">
               <b-icon icon="person"></b-icon>
               <span>Login</span>
             </router-link>

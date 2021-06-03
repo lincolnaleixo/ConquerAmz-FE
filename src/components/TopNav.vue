@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-header navbar-light">
+  <nav class="navbar navbar-header navbar-light pl-0">
     <div class="sidebar-toggler btn x d-block"
          @click.prevent="$store.commit('TOGGLE_SIDEBAR')">
       <b-icon icon="justify"></b-icon>
