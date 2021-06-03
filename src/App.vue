@@ -1,15 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link :to="{name: 'Register'}">Register</router-link> |
-      <router-link :to="{name: 'Login'}">Login</router-link>
+<!--    <div id="nav">-->
+<!--      <router-link to="/">Home</router-link> |-->
+<!--      <router-link to="/about">About</router-link> |-->
+<!--      <router-link :to="{name: 'Register'}">Register</router-link> |-->
+<!--      <router-link :to="{name: 'Login'}">Login</router-link>-->
+<!--    </div>-->
+    <Sidebar/>
+    <div id="main">
+      <TopNav/>
+      <div class="main-content container-fluid">
+        <div class="page-title">
+          <h3>{{ $route.name }}</h3>
+          <p class="text-subtitle text-muted">Some description about the page.</p>
+        </div>
+        <section class="section">
+          <div class="row">
+            <router-view></router-view>
+          </div>
+        </section>
+      </div>
     </div>
-    <router-view/>
   </div>
 </template>
+<script>
+import Sidebar from './components/Sidebar.vue';
+import TopNav from './components/TopNav.vue';
 
+export default {
+  components: {
+    Sidebar,
+    TopNav,
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

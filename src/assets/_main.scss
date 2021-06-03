@@ -43,7 +43,7 @@ section {
     }
 }
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     outline: 0;
 }
 button {
@@ -58,7 +58,7 @@ footer {
 }
 @media screen and (max-width: 767px) {
     #main {
-        margin-left: 0;   
+        margin-left: 0;
     }
     .breadcrumb-header {
         .breadcrumb {

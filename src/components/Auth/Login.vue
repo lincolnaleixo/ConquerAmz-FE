@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container pt-5">
     <div class="row">
       <div class="col-md-5 col-sm-12 mx-auto">
         <div class="card pt-4">
@@ -19,7 +19,7 @@
                          v-model="username"
                          id="username">
                   <div class="form-control-icon">
-                    <i data-feather="user"></i>
+                    <b-icon icon="person"></b-icon>
                   </div>
                 </div>
               </div>
@@ -37,7 +37,7 @@
                          :disabled="loading"
                          v-model="password">
                   <div class="form-control-icon">
-                    <i data-feather="lock"></i>
+                    <b-icon icon="lock"></b-icon>
                   </div>
                 </div>
               </div>
