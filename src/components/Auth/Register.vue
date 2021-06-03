@@ -5,7 +5,7 @@
         <div class="card pt-4">
           <div class="card-body">
             <div class="text-center mb-5">
-<!--              <img src="assets/images/favicon.svg" height="48" class='mb-4'>-->
+              <img src="../../assets/img/icon.png" height="48" class='mb-4'>
               <h3>Sign Up</h3>
               <p>Please fill the form to register.</p>
             </div>
@@ -59,7 +59,11 @@
 
               <router-link :to="{name: 'Login'}">Have an account? Login</router-link>
               <div class="clearfix">
-                <button class="btn btn-primary float-right">Submit</button>
+                <button class="btn btn-primary float-right"
+                        :disabled="loading"
+                        v-text="loading ? 'Saving...' : 'Register'"
+                        @click.prevent="onSubmit">
+                </button>
               </div>
             </form>
             <div class="divider">
@@ -94,6 +98,9 @@ export default {
       lastName: '',
       loading: false,
     };
+  },
+  methods: {
+    onSubmit() {},
   },
 };
 </script>
