@@ -5,7 +5,7 @@
         <div class="card pt-4">
           <div class="card-body">
             <div class="text-center mb-5">
-<!--              <img src="assets/images/favicon.svg" height="48" class='mb-4'>-->
+              <img src="../../assets/img/icon.png" height="48" class='mb-4'>
               <h3>Sign In</h3>
               <p>Please sign in to continue to ConquerAmz.</p>
             </div>
@@ -26,9 +26,9 @@
               <div class="form-group position-relative has-icon-left">
                 <div class="clearfix d-block text-left">
                   <label for="password">Password</label>
-                  <a class="float-right">
+                  <router-link :to="{name: 'ForgotPassword'}" class="float-right">
                     <small>Forgot password?</small>
-                  </a>
+                  </router-link>
                 </div>
                 <div class="position-relative">
                   <input type="text"
@@ -44,7 +44,9 @@
 
               <div class='form-check clearfix my-4'>
                 <div class="checkbox float-left">
-                  <input type="checkbox" id="checkbox1" class='form-check-input' >
+                  <input type="checkbox" id="checkbox1"
+                         class="form-check-input"
+                         v-model="rememberMe">
                   <label for="checkbox1">Remember me</label>
                 </div>
                 <div class="float-right">
@@ -52,7 +54,11 @@
                 </div>
               </div>
               <div class="clearfix">
-                <button class="btn btn-primary float-right">Submit</button>
+                <button class="btn btn-primary float-right"
+                        :disabled="loading"
+                        v-text="loading ? 'Logging in...' : 'Login'"
+                        @click.prevent="onLogin">
+                </button>
               </div>
             </form>
             <div class="divider">
@@ -84,7 +90,11 @@ export default {
       username: '',
       password: '',
       loading: false,
+      rememberMe: false,
     };
+  },
+  methods: {
+    onLogin() {},
   },
 };
 </script>
