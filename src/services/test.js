@@ -6,7 +6,7 @@ export default {
     return new Promise((resolve, reject) => {
       axios.get(testApi)
         .then((res) => {
-          resolve(res);
+          resolve(res.data);
         })
         .catch((error) => reject(error));
     });

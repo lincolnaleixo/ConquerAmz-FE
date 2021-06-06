@@ -1,16 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import actions from './actions';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    apiError: null,
     user: null,
     isUserLoggedIn: false,
     sidebarOpened: true,
   },
   getters: {
     isUserLoggedIn: (state) => state.isUserLoggedIn,
+    isApiWorking: (state) => state.apiError === null,
     getSidebarOpened: (state) => state.sidebarOpened,
   },
   mutations: {
@@ -23,7 +26,9 @@ export default new Vuex.Store({
     TOGGLE_SIDEBAR(state) {
       state.sidebarOpened = !state.sidebarOpened;
     },
+    SET_API_ERROR(state, err) {
+      state.apiError = err;
+    },
   },
-  actions: {
-  },
+  actions,
 });
