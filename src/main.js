@@ -10,8 +10,11 @@ import store from './store';
 import './assets/bootstrap.css'; // overridden version of Bootstrap by Voler
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+const DataTable = import(/* webpackChunkName: "dataTable" */ './components/DataTable.vue');
+
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
+Vue.component('data-table', DataTable);
 
 Vue.config.productionTip = false;
 

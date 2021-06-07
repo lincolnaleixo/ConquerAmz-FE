@@ -30,6 +30,14 @@
                 <span>Login</span>
               </router-link>
             </li>
+            <li class="sidebar-item">
+              <button
+                class="sidebar-link btn btn-outline-primary m-4"
+                @click.prevent="onTest"
+                :disabled="loading"
+                v-text="loading ? 'Testing...' : 'Test API'">
+              </button>
+            </li>
           </slot>
         </ul>
       </div>
@@ -53,7 +61,24 @@ export default {
   data() {
     return {
       showAuth: false,
+      loading: false,
     };
+  },
+  methods: {
+    onTest() {
+      this.loading = true;
+      this.$store.dispatch('testApi')
+        .then(() => {
+          this.loading = false;
+          // eslint-disable-next-line no-alert
+          alert('All good!');
+        })
+        .catch((err) => {
+          this.loading = false;
+          // eslint-disable-next-line no-alert
+          alert(`${err.status} Error happened! Please check if the API is running.`);
+        });
+    },
   },
 };
 </script>
