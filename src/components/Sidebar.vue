@@ -31,6 +31,13 @@
               </router-link>
             </li>
             <li class="sidebar-item">
+              <router-link :to="{name: 'ComponentsSamples'}"
+                           class="sidebar-link">
+                <b-icon icon="segmented-nav"></b-icon>
+                <span>Components</span>
+              </router-link>
+            </li>
+            <li class="sidebar-item">
               <button
                 class="sidebar-link btn btn-outline-primary m-4"
                 @click.prevent="onTest"
