@@ -31,6 +31,12 @@
               </router-link>
             </li>
             <li class="sidebar-item">
+              <router-link :to="{name: 'Settings'}" class="sidebar-link">
+                <b-icon icon="gear"></b-icon>
+                <span>Auth Settings</span>
+              </router-link>
+            </li>
+            <li class="sidebar-item">
               <router-link :to="{name: 'ComponentsSamples'}"
                            class="sidebar-link">
                 <b-icon icon="segmented-nav"></b-icon>

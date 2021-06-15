@@ -16,7 +16,7 @@
                   <input type="text"
                          class="form-control"
                          :disabled="loading"
-                         v-model="username"
+                         v-model="user.email"
                          id="username">
                   <div class="form-control-icon">
                     <b-icon icon="person"></b-icon>
@@ -35,7 +35,7 @@
                          class="form-control"
                          id="password"
                          :disabled="loading"
-                         v-model="password">
+                         v-model="user.password">
                   <div class="form-control-icon">
                     <b-icon icon="lock"></b-icon>
                   </div>
@@ -61,21 +61,6 @@
                 </button>
               </div>
             </form>
-            <div class="divider">
-              <div class="divider-text">OR</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <button class="btn btn-block mb-2 btn-primary">
-                  <b-icon icon="facebook"></b-icon> Facebook
-                </button>
-              </div>
-              <div class="col-sm-6">
-                <button class="btn btn-block mb-2 btn-secondary">
-                  <b-icon icon="github"></b-icon> Github
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -83,18 +68,33 @@
   </div>
 </template>
 <script>
+import userServices from '../../services/users';
+
 export default {
   name: 'Login',
   data() {
     return {
-      username: '',
-      password: '',
+      user: {
+        email: '',
+        password: '',
+      },
       loading: false,
       rememberMe: false,
     };
   },
   methods: {
-    onLogin() {},
+    onLogin() {
+      this.loading = true;
+      userServices.loginUser(this.user)
+        .then((res) => {
+          console.log('response: ', res);
+          this.loading = false;
+        })
+        .catch((err) => {
+          console.log('error: ', err);
+          this.loading = false;
+        });
+    },
   },
 };
 </script>

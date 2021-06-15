@@ -6,7 +6,7 @@
       <div class="main-content container-fluid">
         <div class="page-title text-left" v-if="!hideTitle">
           <h3>{{ $route.name }}</h3>
-          <p class="text-subtitle text-muted">Some description about the page.</p>
+<!--          <p class="text-subtitle text-muted">Some description about the page.</p>-->
         </div>
         <section class="section">
           <div class="row">
