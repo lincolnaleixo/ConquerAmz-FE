@@ -88,6 +88,7 @@ export default {
       userServices.loginUser(this.user)
         .then((res) => {
           console.log('response: ', res);
+          this.$store.commit('TOGGLE_USER_LOGGED_IN');
           this.loading = false;
         })
         .catch((err) => {
