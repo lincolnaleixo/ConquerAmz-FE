@@ -10,15 +10,27 @@
       </p>
     </div>
     <div v-else>
-      <h3 class="info text-left">Welcome to Amazon Conqueror!</h3>
+      <h3 class="info text-left">Hello, {{ getUser.name || 'User' }}</h3>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
+  computed: {
+    ...mapGetters([
+      'getUser',
+      'isUserLoggedIn',
+    ]),
+  },
+  async mounted() {
+    if (this.$store.getters.isUserLoggedIn) {
+      await this.$store.dispatch('getUserData');
+    }
+  },
 };
 </script>

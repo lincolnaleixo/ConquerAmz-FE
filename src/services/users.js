@@ -1,4 +1,5 @@
 import axios from 'axios';
+import VueJwtDecode from 'vue-jwt-decode';
 import { LoginUser, RegisterUser } from './api';
 
 export default {
@@ -16,5 +17,12 @@ export default {
         .catch((err) => reject(err));
     });
   },
-  getUser() {},
+  getUserDetails() {
+    return new Promise((resolve, reject) => {
+      const token = localStorage.getItem('jwtToken');
+      const decoded = VueJwtDecode.decode(token);
+      if (decoded) resolve(decoded);
+      reject(Error('No token available!'));
+    });
+  },
 };

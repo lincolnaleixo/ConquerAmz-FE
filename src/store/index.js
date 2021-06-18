@@ -23,6 +23,7 @@ export default new Vuex.Store({
     isApiWorking: (state) => state.apiError === null,
     getSidebarOpened: (state) => state.sidebarOpened,
     getUserToken: () => localStorage.getItem('jwtToken'),
+    getUser: (state) => state.user,
     getNotificationObject: (state) => state.notificationObject,
   },
 

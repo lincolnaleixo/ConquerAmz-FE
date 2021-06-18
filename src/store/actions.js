@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import router from '../router';
 import TestService from '../services/test';
+import UserServices from '../services/users';
 
 const actions = {
   testApi({ commit }) {
@@ -28,6 +29,17 @@ const actions = {
   async checkToken({ state }) {
     const token = localStorage.getItem('jwtToken') || state.userToken;
     state.isUserLoggedIn = token !== null && token.length > 0;
+  },
+  getUserData({ commit, dispatch }) {
+    UserServices.getUserDetails()
+      .then((res) => commit('SET_USER', res))
+      .catch((err) => {
+        dispatch('notify', {
+          text: err.data,
+          type: 'error',
+          title: 'Could not get User data!',
+        });
+      });
   },
 };
 
