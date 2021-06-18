@@ -26,6 +26,11 @@ const routes = [
     component: Error404Page,
   },
   {
+    path: '/403',
+    name: '403Error',
+    component: () => import(/* webpackChunkName: "" */ '../views/Error403.vue'),
+  },
+  {
     path: '/auth',
     name: 'Auth',
     component: Auth,
@@ -52,12 +57,35 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/auth-settings',
+    name: 'Settings',
+    component: () => import(/* webpackChunkName: "settings" */ '../views/Settings.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+// add Authentication route guard:
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem('jwtToken') == null) {
+      next({
+        path: '/403',
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

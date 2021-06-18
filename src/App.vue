@@ -1,12 +1,16 @@
 <template>
   <div id="app">
+    <notifications
+      :duration="-1"
+      group="generalGroup">
+    </notifications>
     <Sidebar/>
     <div id="main">
       <TopNav/>
       <div class="main-content container-fluid">
         <div class="page-title text-left" v-if="!hideTitle">
           <h3>{{ $route.name }}</h3>
-          <p class="text-subtitle text-muted">Some description about the page.</p>
+<!--          <p class="text-subtitle text-muted">Some description about the page.</p>-->
         </div>
         <section class="section">
           <div class="row">
@@ -18,6 +22,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import Sidebar from './components/Sidebar.vue';
 import TopNav from './components/TopNav.vue';
 
@@ -27,9 +32,13 @@ export default {
     TopNav,
   },
   computed: {
+    ...mapGetters(['getNotificationObject']),
     hideTitle() {
       return this.$route.path.includes('auth');
     },
+  },
+  async mounted() {
+    await this.$store.dispatch('checkToken');
   },
 };
 </script>

@@ -50,13 +50,13 @@ export default {
       switch (filter) {
         case 'month':
           this.minDate = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-          this.maxDate = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-          this.dateValue = this.minDate;
+          this.maxDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+          this.dateValue = this.maxDate;
           break;
         case 'week':
           this.minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-          this.maxDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
-          this.dateValue = this.minDate;
+          this.maxDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+          this.dateValue = this.maxDate;
           break;
         case 'today':
         default:

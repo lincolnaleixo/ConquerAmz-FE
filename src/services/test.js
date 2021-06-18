@@ -1,5 +1,5 @@
 import axios from 'axios';
-import testApi from './api';
+import { testApi } from './api';
 
 export default {
   testApi() {
