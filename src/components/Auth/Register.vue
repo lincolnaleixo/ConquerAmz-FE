@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-7 col-sm-12 mx-auto">
+      <div class="col-md-5 col-sm-12 mx-auto">
         <div class="card pt-4">
           <div class="card-body">
             <div class="text-center mb-5">
@@ -13,41 +13,49 @@
             </div>
             <form>
               <div class="row">
-<!--                <div class="divider">-->
-<!--                  <div class="divider-text">User Configuration</div>-->
-<!--                </div>-->
                 <div class="d-flex flex-column align-items-center justify-content-center">
-                  <div class="col-md-6 col-12">
+                  <div class="col-12">
                     <div class="form-group">
                       <label for="first-name-column">Name/Username</label>
                       <input type="text" id="first-name-column"
                              class="form-control"
+                             :class="{'is-invalid': $v.user.name.$error}"
                              v-model="user.name"
                              name="fname-column">
                     </div>
                   </div>
-                  <div class="col-md-6 col-12">
+                  <br>
+                  <div class="col-12">
                     <div class="form-group">
                       <label for="username-column">Email</label>
                       <input type="email" id="username-column"
                              class="form-control"
                              v-model="user.email"
+                             :class="{'is-invalid': $v.user.email.$error}"
                              name="username-column">
+                      <div class="invalid-feedback" v-if="$v.user.email.$error">
+                        Please provide a password with at least 8 letters.
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-6 col-12">
+                  <br>
+                  <div class="col-12">
                     <div class="form-group">
                       <label for="email-id-column">Password</label>
                       <input type="password"
                              v-model="user.password"
                              id="email-id-column"
                              class="form-control"
+                             :class="{'is-invalid': $v.user.password.$error}"
                              name="email-id-column">
+                      <div class="invalid-feedback" v-if="$v.user.password.$error">
+                        Please provide a password with at least 8 letters.
+                      </div>
                     </div>
                   </div>
                 </div>
-              </diV>
-
+              </div>
+              <br>
               <router-link :to="{name: 'Login'}">Have an account? Login</router-link>
               <div class="clearfix">
                 <button class="btn btn-primary float-right"
@@ -57,21 +65,6 @@
                 </button>
               </div>
             </form>
-<!--            <div class="divider">-->
-<!--              <div class="divider-text">OR</div>-->
-<!--            </div>-->
-<!--            <div class="row">-->
-<!--              <div class="col-sm-6">-->
-<!--                <button class="btn btn-block mb-2 btn-primary">-->
-<!--                  <b-icon icon="facebook"></b-icon> Facebook-->
-<!--                </button>-->
-<!--              </div>-->
-<!--              <div class="col-sm-6">-->
-<!--                <button class="btn btn-block mb-2 btn-secondary">-->
-<!--                  <b-icon icon="github"></b-icon> Github-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
           </div>
         </div>
       </div>
@@ -79,6 +72,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
+import { email, minLength, required } from 'vuelidate/lib/validators';
 import userServices from '../../services/users';
 
 export default {
@@ -93,25 +88,72 @@ export default {
       loading: false,
     };
   },
+  validations: {
+    user: {
+      email: {
+        email,
+        required,
+      },
+      password: {
+        required,
+        minLength: minLength(8),
+      },
+      name: {
+        required,
+        minLength: minLength(1),
+      },
+    },
+  },
   methods: {
+    ...mapActions(['notify']),
     onSubmit() {
+      this.$v.$touch();
       this.loading = true;
-      userServices.createUser(this.user)
+      if (this.$v.user.$invalid) {
+        this.notify({
+          type: 'error',
+          text: 'Please check your form for errors.',
+          title: 'Invalid Data',
+        });
+        this.loading = false;
+        return false;
+      }
+      return userServices.createUser(this.user)
         .then((res) => {
           this.loading = false;
           const { token } = res.data;
           if (token) {
             localStorage.setItem('jwtToken', token);
             this.$store.commit('TOGGLE_USER_LOGGED_IN');
+            this.notify({
+              type: 'success',
+              text: 'You have signed up successfully.',
+              title: 'Congrats!',
+            });
             this.$router.push({ path: '/' });
           }
         })
         .catch((err) => {
-          console.log('error: ', err);
+          if (err.status === 500 || err.status === 0) {
+            this.notify({
+              type: 'error',
+              text: 'Please feel free to try again.',
+              title: 'Something wrong happened!',
+            });
+          } else if (err.status === 400) {
+            this.notify({
+              type: 'error',
+              text: err.data || err,
+              title: 'Signing up failed!',
+            });
+          }
           // localStorage.setItem('jwtToken', '');
           this.loading = false;
         });
     },
+  },
+  async mounted() {
+    this.$v.$reset();
   },
 };
 </script>

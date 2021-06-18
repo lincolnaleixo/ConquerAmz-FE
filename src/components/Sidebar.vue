@@ -3,7 +3,9 @@
     <div class="sidebar-wrapper active ps">
       <div class="sidebar-header">
         <!-- Insert img -->
-        <img src="../assets/img/icon.png" alt="icon">
+        <router-link :to="{path: '/'}">
+          <img src="../assets/img/icon.png" alt="icon">
+        </router-link>
       </div>
       <div class="sidebar-menu">
         <ul class="menu">
@@ -33,7 +35,7 @@
               <a role="button"
                  class="sidebar-link"
                  @click.prevent="$store.dispatch('logoutUser')">
-                <b-icon icon="exit"></b-icon>
+                <b-icon icon="x-square"></b-icon>
                 <span>Logout</span>
               </a>
             </li>

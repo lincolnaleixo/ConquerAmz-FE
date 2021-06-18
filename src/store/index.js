@@ -11,13 +11,21 @@ export default new Vuex.Store({
     userToken: null,
     isUserLoggedIn: false,
     sidebarOpened: true,
+    notificationObject: {
+      title: '',
+      type: '',
+      text: '',
+    },
   },
+
   getters: {
     isUserLoggedIn: (state) => state.isUserLoggedIn,
     isApiWorking: (state) => state.apiError === null,
     getSidebarOpened: (state) => state.sidebarOpened,
     getUserToken: () => localStorage.getItem('jwtToken'),
+    getNotificationObject: (state) => state.notificationObject,
   },
+
   mutations: {
     SET_USER(state, user) {
       state.user = user;
@@ -31,6 +39,10 @@ export default new Vuex.Store({
     SET_API_ERROR(state, err) {
       state.apiError = err;
     },
+    SET_NOTIFICATION(state, notObject) {
+      state.notificationObject = notObject;
+    },
   },
+
   actions,
 });

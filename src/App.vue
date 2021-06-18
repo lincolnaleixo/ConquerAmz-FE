@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <notifications
+      :duration="-1"
+      group="generalGroup">
+    </notifications>
     <Sidebar/>
     <div id="main">
       <TopNav/>
@@ -18,6 +22,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import Sidebar from './components/Sidebar.vue';
 import TopNav from './components/TopNav.vue';
 
@@ -27,6 +32,7 @@ export default {
     TopNav,
   },
   computed: {
+    ...mapGetters(['getNotificationObject']),
     hideTitle() {
       return this.$route.path.includes('auth');
     },

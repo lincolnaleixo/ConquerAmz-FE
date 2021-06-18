@@ -3,6 +3,7 @@ import {
   BootstrapVueIcons,
 } from 'bootstrap-vue';
 import Vue from 'vue';
+import Vuelidate from 'vuelidate';
 import Notifications from 'vue-notification';
 import App from './App.vue';
 import router from './router';
@@ -15,6 +16,7 @@ const DataTable = import(/* webpackChunkName: "dataTable" */ './components/DataT
 
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
+Vue.use(Vuelidate);
 Vue.use(Notifications);
 Vue.component('data-table', DataTable);
 

@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import router from '../router';
 import TestService from '../services/test';
 
 const actions = {
@@ -14,10 +16,14 @@ const actions = {
         });
     });
   },
+  notify({ commit }, notifObj) {
+    commit('SET_NOTIFICATION', notifObj);
+    Vue.notify(notifObj);
+  },
   async logoutUser({ commit }) {
     localStorage.setItem('jwtToken', '');
     commit('TOGGLE_USER_LOGGED_IN');
-    await this.$router.push({ path: '/' });
+    await router.push({ path: '/' });
   },
   async checkToken({ state }) {
     const token = localStorage.getItem('jwtToken') || state.userToken;
