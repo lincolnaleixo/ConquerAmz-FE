@@ -8,26 +8,12 @@
       <div class="sidebar-menu">
         <ul class="menu">
           <li class="sidebar-title text-left">Main Menu</li>
-          <li class="sidebar-item" v-if="isUserLoggedIn">
-            <router-link :to="{path: '/'}"
-                         class="sidebar-link">
-              <b-icon icon="house"></b-icon>
-              <span>Home</span>
-            </router-link>
-          </li>
-          <slot v-if="!isUserLoggedIn">
+          <slot v-if="isUserLoggedIn">
             <li class="sidebar-item">
-              <router-link :to="{name: 'Register'}"
+              <router-link :to="{path: '/'}"
                            class="sidebar-link">
-                <b-icon icon="person-plus"></b-icon>
-                <span>Register</span>
-              </router-link>
-            </li>
-            <li class="sidebar-item">
-              <router-link :to="{name: 'Login'}"
-                           class="sidebar-link">
-                <b-icon icon="person"></b-icon>
-                <span>Login</span>
+                <b-icon icon="house"></b-icon>
+                <span>Home</span>
               </router-link>
             </li>
             <li class="sidebar-item">
@@ -44,13 +30,37 @@
               </router-link>
             </li>
             <li class="sidebar-item">
-              <button
-                class="sidebar-link btn btn-outline-primary m-4"
-                @click.prevent="onTest"
-                :disabled="loading"
-                v-text="loading ? 'Testing...' : 'Test API'">
-              </button>
+              <a role="button"
+                 class="sidebar-link"
+                 @click.prevent="$store.dispatch('logoutUser')">
+                <b-icon icon="exit"></b-icon>
+                <span>Logout</span>
+              </a>
             </li>
+          </slot>
+          <slot v-else>
+            <li class="sidebar-item">
+              <router-link :to="{name: 'Register'}"
+                           class="sidebar-link">
+                <b-icon icon="person-plus"></b-icon>
+                <span>Register</span>
+              </router-link>
+            </li>
+            <li class="sidebar-item">
+              <router-link :to="{name: 'Login'}"
+                           class="sidebar-link">
+                <b-icon icon="person"></b-icon>
+                <span>Login</span>
+              </router-link>
+            </li>
+<!--            <li class="sidebar-item">-->
+<!--              <button-->
+<!--                class="sidebar-link btn btn-outline-primary m-4"-->
+<!--                @click.prevent="onTest"-->
+<!--                :disabled="loading"-->
+<!--                v-text="loading ? 'Testing...' : 'Test API'">-->
+<!--              </button>-->
+<!--            </li>-->
           </slot>
         </ul>
       </div>

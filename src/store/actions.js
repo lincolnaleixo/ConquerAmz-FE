@@ -14,6 +14,15 @@ const actions = {
         });
     });
   },
+  async logoutUser({ commit }) {
+    localStorage.setItem('jwtToken', '');
+    commit('TOGGLE_USER_LOGGED_IN');
+    await this.$router.push({ path: '/' });
+  },
+  async checkToken({ state }) {
+    const token = localStorage.getItem('jwtToken') || state.userToken;
+    state.isUserLoggedIn = token !== null && token.length > 0;
+  },
 };
 
 export default actions;

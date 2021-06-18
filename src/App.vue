@@ -31,6 +31,9 @@ export default {
       return this.$route.path.includes('auth');
     },
   },
+  async mounted() {
+    await this.$store.dispatch('checkToken');
+  },
 };
 </script>
 <style lang="scss">

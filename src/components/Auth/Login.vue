@@ -31,7 +31,7 @@
                   </router-link>
                 </div>
                 <div class="position-relative">
-                  <input type="text"
+                  <input type="password"
                          class="form-control"
                          id="password"
                          :disabled="loading"
@@ -87,8 +87,12 @@ export default {
       this.loading = true;
       userServices.loginUser(this.user)
         .then((res) => {
-          console.log('response: ', res);
-          this.$store.commit('TOGGLE_USER_LOGGED_IN');
+          const { token } = res.data;
+          if (token) {
+            localStorage.setItem('jwtToken', token);
+            this.$store.commit('TOGGLE_USER_LOGGED_IN');
+            this.$router.push({ path: '/' });
+          }
           this.loading = false;
         })
         .catch((err) => {

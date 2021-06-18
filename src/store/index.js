@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     apiError: null,
     user: null,
+    userToken: null,
     isUserLoggedIn: false,
     sidebarOpened: true,
   },
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     isUserLoggedIn: (state) => state.isUserLoggedIn,
     isApiWorking: (state) => state.apiError === null,
     getSidebarOpened: (state) => state.sidebarOpened,
+    getUserToken: () => localStorage.getItem('jwtToken'),
   },
   mutations: {
     SET_USER(state, user) {

@@ -16,41 +16,34 @@
 <!--                <div class="divider">-->
 <!--                  <div class="divider-text">User Configuration</div>-->
 <!--                </div>-->
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="first-name-column">First Name</label>
-                    <input type="text" id="first-name-column"
-                           class="form-control"
-                           v-model="user.firstName"
-                           name="fname-column">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="first-name-column">Name/Username</label>
+                      <input type="text" id="first-name-column"
+                             class="form-control"
+                             v-model="user.name"
+                             name="fname-column">
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="last-name-column">Last Name</label>
-                    <input type="text" id="last-name-column"
-                           class="form-control"
-                           v-model="user.lastName"
-                           name="lname-column">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="username-column">Email</label>
+                      <input type="email" id="username-column"
+                             class="form-control"
+                             v-model="user.email"
+                             name="username-column">
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="username-column">Email</label>
-                    <input type="email" id="username-column"
-                           class="form-control"
-                           v-model="user.email"
-                           name="username-column">
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Password</label>
-                    <input type="password"
-                           v-model="user.password"
-                           id="email-id-column"
-                           class="form-control"
-                           name="email-id-column">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="email-id-column">Password</label>
+                      <input type="password"
+                             v-model="user.password"
+                             id="email-id-column"
+                             class="form-control"
+                             name="email-id-column">
+                    </div>
                   </div>
                 </div>
               </diV>
@@ -93,10 +86,9 @@ export default {
   data() {
     return {
       user: {
-        username: '',
+        email: '',
         password: '',
-        firstName: '',
-        lastName: '',
+        name: '',
       },
       loading: false,
     };
@@ -106,11 +98,17 @@ export default {
       this.loading = true;
       userServices.createUser(this.user)
         .then((res) => {
-          console.log('response: ', res);
           this.loading = false;
+          const { token } = res.data;
+          if (token) {
+            localStorage.setItem('jwtToken', token);
+            this.$store.commit('TOGGLE_USER_LOGGED_IN');
+            this.$router.push({ path: '/' });
+          }
         })
         .catch((err) => {
           console.log('error: ', err);
+          // localStorage.setItem('jwtToken', '');
           this.loading = false;
         });
     },
