@@ -13,19 +13,22 @@
           <slot v-if="isUserLoggedIn">
             <li class="sidebar-item">
               <router-link :to="{path: '/'}"
-                           class="sidebar-link">
+                           :class="$route.name === 'Home' ? 'sidebar-link active' : 'sidebar-link'">
                 <b-icon icon="house"></b-icon>
                 <span>Home</span>
               </router-link>
             </li>
             <li class="sidebar-item">
-              <router-link :to="{name: 'Settings'}" class="sidebar-link">
+              <router-link :to="{name: 'Settings'}"
+                           class="sidebar-link"
+                           active-class="active">
                 <b-icon icon="gear"></b-icon>
                 <span>Auth Settings</span>
               </router-link>
             </li>
             <li class="sidebar-item">
               <router-link :to="{name: 'ComponentsSamples'}"
+                           active-class="active"
                            class="sidebar-link">
                 <b-icon icon="segmented-nav"></b-icon>
                 <span>Components</span>
@@ -43,6 +46,7 @@
           <slot v-else>
             <li class="sidebar-item">
               <router-link :to="{name: 'Register'}"
+                           active-class="active"
                            class="sidebar-link">
                 <b-icon icon="person-plus"></b-icon>
                 <span>Register</span>
@@ -50,6 +54,7 @@
             </li>
             <li class="sidebar-item">
               <router-link :to="{name: 'Login'}"
+                           active-class="active"
                            class="sidebar-link">
                 <b-icon icon="person"></b-icon>
                 <span>Login</span>
@@ -110,5 +115,14 @@ export default {
 <style lang="scss">
 .sidebar-wrapper {
   left: 0;
+}
+.sidebar-link {
+  &.active {
+    background: #0d6efd;
+    color: white;
+    span {
+      color: white !important;
+    }
+  }
 }
 </style>

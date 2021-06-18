@@ -127,10 +127,10 @@ export default {
             this.$store.commit('TOGGLE_USER_LOGGED_IN');
             this.notify({
               type: 'success',
-              text: 'You have signed up successfully.',
+              text: 'You have signed up successfully. Now please provide your AWS SP credentials to connect and sync data',
               title: 'Congrats!',
             });
-            this.$router.push({ path: '/' });
+            this.$router.push({ name: 'Settings' });
           }
         })
         .catch((err) => {
