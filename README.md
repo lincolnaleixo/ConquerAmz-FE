@@ -1,29 +1,22 @@
 # conquer-amz
 
 ## Project setup
+1 - Navigate to the project's directory.
+2 - Install dependencies:
 ```
 npm install
 ```
+3 - Add `.env` file in the project's root directory, with the following structure:
+```
+NODE_ENV=
+BASE_API=
+```
+**NB**:
+- If you're running the repo with Docker, put `container` as `NODE_ENV`
+- Use `BASE_API` variable for the API's base endpoint. If you're running the API locally as well, insert `http://localhost:3000`
 
-### Compiles and hot-reloads for development
+4 - Run the app locally:
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+5 - Navigate to `http://localhost:8080`
