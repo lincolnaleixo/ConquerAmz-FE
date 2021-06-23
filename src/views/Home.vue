@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="!$store.getters.isUserLoggedIn">
+    <div v-if="!isUserLoggedIn && !getUser">
       <p class="text-subtitle text-muted">
         It looks like you are not logged in! Click <router-link :to="{ name: 'Register' }">
         here
@@ -10,7 +10,7 @@
       </p>
     </div>
     <div v-else>
-      <h3 class="info text-left">Hello, {{ getUser.name || 'User' }}</h3>
+      <h3 class="info text-left">Hello, {{ username || 'User' }}</h3>
     </div>
   </div>
 </template>
@@ -24,13 +24,21 @@ export default {
   computed: {
     ...mapGetters([
       'getUser',
+      'getUserToken',
       'isUserLoggedIn',
     ]),
+    username() {
+      return this.getUser ? this.getUser.name : 'User';
+    },
+    displayWelcome() {
+      const token = localStorage.getItem('jwtToken');
+      return token === null;
+    },
   },
   async mounted() {
-    if (this.$store.getters.isUserLoggedIn) {
-      await this.$store.dispatch('getUserData');
-    }
+    this.$nextTick(async () => {
+      if (!this.displayWelcome) await this.$store.dispatch('getUserData');
+    });
   },
 };
 </script>

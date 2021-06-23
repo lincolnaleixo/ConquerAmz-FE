@@ -138,6 +138,11 @@ export default {
         .catch((err) => {
           console.log('error: ', err);
           this.loading = false;
+          this.notify({
+            type: 'error',
+            text: 'Error logging in!',
+            title: 'Invalid credentials',
+          });
         });
     },
   },

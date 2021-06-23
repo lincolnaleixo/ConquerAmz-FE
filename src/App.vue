@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <notifications
-      :duration="-1"
-      group="generalGroup">
+      :duration="-1">
     </notifications>
     <Sidebar/>
     <div id="main">

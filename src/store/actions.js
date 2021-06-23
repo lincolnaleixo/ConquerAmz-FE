@@ -24,7 +24,7 @@ const actions = {
   async logoutUser({ commit }) {
     localStorage.setItem('jwtToken', '');
     commit('TOGGLE_USER_LOGGED_IN');
-    await router.push({ path: '/' });
+    await router.replace({ path: '/' });
   },
   async checkToken({ state }) {
     const token = localStorage.getItem('jwtToken') || state.userToken;
