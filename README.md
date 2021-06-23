@@ -9,7 +9,7 @@ npm install
 3 - Add `.env` file in the project's root directory, with the following structure:
 ```
 NODE_ENV=
-BASE_API=
+VUE_APP_API_ENDPOINT=
 ```
 **NB**:
 - If you're running the repo with Docker, put `container` as `NODE_ENV`
