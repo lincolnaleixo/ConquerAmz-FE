@@ -28,7 +28,7 @@ const routes = [
   {
     path: '/403',
     name: '403Error',
-    component: () => import(/* webpackChunkName: "" */ '../views/Error403.vue'),
+    component: () => import(/* webpackChunkName: "403" */ '../views/Error403.vue'),
   },
   {
     path: '/auth',
@@ -56,6 +56,16 @@ const routes = [
         component: () => import(/* webpackChunkName: "componentsSamples" */ '../views/ComponentsSamples.vue'),
       },
     ],
+  },
+  {
+    path: '/inventory',
+    name: 'Inventory',
+    component: () => import(/* webpackChunkName: "inventory" */ '../views/Inventory.vue'),
+  },
+  {
+    path: '/orders',
+    name: 'Orders',
+    component: () => import(/* webpackChunkName: "orders" */ '../views/Orders.vue'),
   },
   {
     path: '/auth-settings',

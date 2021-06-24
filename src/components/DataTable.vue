@@ -1,17 +1,5 @@
 <template>
   <div class="table-wrapper">
-<!--    <table class='table table-striped' id="table1">-->
-<!--      <thead>-->
-<!--        <tr>-->
-<!--          <th v-for="(header, index) in tableHeaders" :key="`datatable_h_${index}`">-->
-<!--            {{ header.name }}-->
-<!--          </th>-->
-<!--        </tr>-->
-<!--      </thead>-->
-<!--      <tbody>-->
-<!--        <tr v-for=""></tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
     <b-table
       class="table table-striped" id="table1"
       :items="tableData"

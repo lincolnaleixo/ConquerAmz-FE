@@ -9,7 +9,6 @@
       <div class="main-content container-fluid">
         <div class="page-title text-left" v-if="!hideTitle">
           <h3>{{ $route.name }}</h3>
-<!--          <p class="text-subtitle text-muted">Some description about the page.</p>-->
         </div>
         <section class="section">
           <div class="row">
@@ -33,7 +32,7 @@ export default {
   computed: {
     ...mapGetters(['getNotificationObject']),
     hideTitle() {
-      return this.$route.path.includes('auth');
+      return this.$route.path.includes('auth') || this.$route.path === '/';
     },
   },
   async mounted() {
