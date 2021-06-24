@@ -30,16 +30,10 @@ const actions = {
     const token = localStorage.getItem('jwtToken') || state.userToken;
     state.isUserLoggedIn = token !== null && token.length > 0;
   },
-  getUserData({ commit, dispatch }) {
+  getUserData({ commit }) {
     UserServices.getUserDetails()
       .then((res) => commit('SET_USER', res))
-      .catch((err) => {
-        dispatch('notify', {
-          text: err.data,
-          type: 'error',
-          title: 'Could not get User data!',
-        });
-      });
+      .catch(() => {});
   },
 };
 

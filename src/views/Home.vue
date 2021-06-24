@@ -10,7 +10,15 @@
       </p>
     </div>
     <div v-else>
-      <h3 class="info text-left">Hello, {{ username || 'User' }}</h3>
+      <p class="info text-left mt-1">Hello, {{ username || 'User' }}</p>
+      <div class="row">
+        <div class="col-9">
+          <card-layout card-type="table" card-title="Last Orders"></card-layout>
+        </div>
+        <div class="col-3">
+          <card-layout card-type="statistics" card-title="Inventory Remaining"></card-layout>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,9 +26,13 @@
 <script>
 // @ is an alias to /src
 import { mapGetters } from 'vuex';
+import CardLayout from '../components/CardLayout.vue';
 
 export default {
   name: 'Home',
+  components: {
+    CardLayout,
+  },
   computed: {
     ...mapGetters([
       'getUser',

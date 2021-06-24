@@ -19,6 +19,22 @@
               </router-link>
             </li>
             <li class="sidebar-item">
+              <router-link class="sidebar-link"
+                           :to="{ name: 'Inventory' }"
+                           active-class="active">
+                <b-icon icon="clipboard-data"></b-icon>
+                <span>Inventory</span>
+              </router-link>
+            </li>
+            <li class="sidebar-item">
+              <router-link class="sidebar-link"
+                           :to="{ name: 'Orders' }"
+                           active-class="active">
+                <b-icon icon="card-checklist"></b-icon>
+                <span>Orders</span>
+              </router-link>
+            </li>
+            <li class="sidebar-item">
               <router-link :to="{name: 'Settings'}"
                            class="sidebar-link"
                            active-class="active">
@@ -31,7 +47,7 @@
                            active-class="active"
                            class="sidebar-link">
                 <b-icon icon="segmented-nav"></b-icon>
-                <span>Components</span>
+                <span>Components <span class="text-muted">(temp)</span></span>
               </router-link>
             </li>
             <li class="sidebar-item">
@@ -60,14 +76,6 @@
                 <span>Login</span>
               </router-link>
             </li>
-<!--            <li class="sidebar-item">-->
-<!--              <button-->
-<!--                class="sidebar-link btn btn-outline-primary m-4"-->
-<!--                @click.prevent="onTest"-->
-<!--                :disabled="loading"-->
-<!--                v-text="loading ? 'Testing...' : 'Test API'">-->
-<!--              </button>-->
-<!--            </li>-->
           </slot>
         </ul>
       </div>
