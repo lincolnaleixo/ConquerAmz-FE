@@ -2,6 +2,7 @@
 
 ## Project setup
 1 - Navigate to the project's directory.
+
 2 - Install dependencies:
 ```
 npm install
@@ -13,10 +14,11 @@ VUE_APP_API_ENDPOINT=
 ```
 **NB**:
 - If you're running the repo with Docker, put `container` as `NODE_ENV`
-- Use `BASE_API` variable for the API's base endpoint. If you're running the API locally as well, insert `http://localhost:3000`
+- Use `VUE_APP_API_ENDPOINT` variable for the API's base endpoint. When running with Docker or on your local machine, put `http://localhost:3000`
 
-4 - Run the app locally:
+4 - Run the app:
 ```
 npm run serve
 ```
+
 5 - Navigate to `http://localhost:8080`
