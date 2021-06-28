@@ -1,15 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="!isUserLoggedIn && !getUser">
-      <p class="text-subtitle text-muted">
-        It looks like you are not logged in! Click <router-link :to="{ name: 'Register' }">
-        here
-      </router-link> to Signup, or <router-link :to="{ name: 'Login' }">
-        here
-      </router-link> if you already have an account.
-      </p>
-    </div>
-    <div v-else>
+    <div>
       <p class="info text-left mt-1">Hello, {{ username || 'User' }}</p>
       <div class="row">
         <div class="col-9">

@@ -21,14 +21,20 @@ const actions = {
     commit('SET_NOTIFICATION', notifObj);
     Vue.notify(notifObj);
   },
-  async logoutUser({ commit }) {
+  async logoutUser({ commit, dispatch }) {
     localStorage.setItem('jwtToken', '');
     commit('TOGGLE_USER_LOGGED_IN');
+    dispatch('notify', {
+      type: 'info',
+      text: 'You Logged out successfully!',
+      title: 'Bye!',
+    });
     await router.replace({ path: '/' });
   },
   async checkToken({ state }) {
     const token = localStorage.getItem('jwtToken') || state.userToken;
     state.isUserLoggedIn = token !== null && token.length > 0;
+    return token;
   },
   getUserData({ commit }) {
     UserServices.getUserDetails()

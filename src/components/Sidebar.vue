@@ -12,7 +12,7 @@
           <li class="sidebar-title text-left">Main Menu</li>
           <slot v-if="isUserLoggedIn">
             <li class="sidebar-item">
-              <router-link :to="{path: '/'}"
+              <router-link :to="{path: '/home'}"
                            :class="$route.name === 'Home' ? 'sidebar-link active' : 'sidebar-link'">
                 <b-icon icon="house"></b-icon>
                 <span>Home</span>
