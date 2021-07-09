@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div>
+    <div v-if="!displayWelcome">
       <p class="info text-left mt-1">Hello, {{ username || 'User' }}</p>
       <div class="row">
         <div class="col-9">
