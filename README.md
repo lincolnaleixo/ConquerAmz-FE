@@ -7,18 +7,21 @@
 ```
 npm install
 ```
-3 - Add `.env` file in the project's root directory, with the following structure:
+3 - If you're running the app without Docker, add `.env` file in the project's root directory, with the following structure:
 ```
 NODE_ENV=
-VUE_APP_API_ENDPOINT=
+VUE_APP_API_ENDPOINT=htp://localhost:3000/
 ```
-**NB**:
-- If you're running the repo with Docker, put `container` as `NODE_ENV`
-- Use `VUE_APP_API_ENDPOINT` variable for the API's base endpoint. When running with Docker or on your local machine, put `http://localhost:3000`
 
 4 - Run the app:
 ```
 npm run serve
 ```
 
-5 - Navigate to `http://localhost:8080`
+5 - Navigate to `http://localhost:8080`.
+
+
+**NB**:
+- Use `VUE_APP_API_ENDPOINT` variable for the API's base endpoint. By default, it will be port 3000.
+- When running with Docker/containers, set the `NODE_ENV` to `container`. Further instructions for the Docker setup
+can be found in the API's README file.
