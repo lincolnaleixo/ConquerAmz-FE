@@ -2,7 +2,7 @@
   <div class="home">
     <div>
       <p class="info text-left mt-1">Hello, {{ username || 'User' }}</p>
-      <div class="row">
+      <div class="row" v-if="isUserLoggedIn">
         <div class="col-9">
           <card-layout card-type="table" card-title="Last Orders"></card-layout>
         </div>
@@ -22,7 +22,7 @@ import CardLayout from '../components/CardLayout.vue';
 export default {
   name: 'Home',
   components: {
-    CardLayout,
+    'card-layout': CardLayout,
   },
   computed: {
     ...mapGetters([

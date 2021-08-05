@@ -30,7 +30,7 @@ const actions = {
       text: 'You Logged out successfully!',
       title: 'Bye!',
     });
-    await router.replace({ path: '/' });
+    await router.push({ path: '/auth/login' });
   },
   async checkToken({ state }) {
     const token = localStorage.getItem('jwtToken') || state.userToken;

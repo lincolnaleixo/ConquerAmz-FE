@@ -131,7 +131,7 @@ export default {
               text: 'You logged in successfully',
               title: 'Welcome to Amazon Conqueror!',
             });
-            this.$router.push({ path: '/home' });
+            this.$router.push({ path: '/' });
           }
           this.loading = false;
         })

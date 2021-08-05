@@ -19,7 +19,7 @@ export default new Vuex.Store({
   },
 
   getters: {
-    isUserLoggedIn: (state) => state.isUserLoggedIn,
+    isUserLoggedIn: (state) => state.isUserLoggedIn || localStorage.getItem('ConquerAmazonUserId'),
     isApiWorking: (state) => state.apiError === null,
     getSidebarOpened: (state) => state.sidebarOpened,
     getUserToken: () => localStorage.getItem('jwtToken'),
