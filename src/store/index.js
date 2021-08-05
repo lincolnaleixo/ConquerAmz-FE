@@ -24,6 +24,7 @@ export default new Vuex.Store({
     getSidebarOpened: (state) => state.sidebarOpened,
     getUserToken: () => localStorage.getItem('jwtToken'),
     getUser: (state) => state.user,
+    getUserId: () => localStorage.getItem('ConquerAmazonUserId'),
     getNotificationObject: (state) => state.notificationObject,
   },
 

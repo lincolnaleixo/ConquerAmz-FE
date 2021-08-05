@@ -95,7 +95,7 @@ export default {
     userId() {
       // eslint-disable-next-line no-underscore-dangle
       if (this.$store.getters.getUser) return this.$store.getters.getUser._id;
-      return null;
+      return this.$store.getters.getUserId;
     },
   },
   data() {
@@ -150,9 +150,8 @@ export default {
         ...this.awsConfig,
       };
       return configService.setUserConfig(body)
-        .then((res) => {
+        .then(() => {
           this.loading = false;
-          console.log('SUCCESS: ', res);
           this.$store.dispatch('notify', {
             type: 'success',
             text: 'Your settings were saved successfully!',
@@ -161,7 +160,6 @@ export default {
         })
         .catch((err) => {
           this.loading = false;
-          console.log('error: ', err);
           this.$store.dispatch('notify', {
             type: 'error',
             text: err.message,
@@ -173,7 +171,6 @@ export default {
       if (this.userId) {
         configService.getUserConfig(this.userId)
           .then(({ data }) => {
-            console.log('response: ', data);
             // eslint-disable-next-line prefer-destructuring
             this.awsConfig = data.data[0];
           })
