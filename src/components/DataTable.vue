@@ -1,7 +1,7 @@
 <template>
   <div class="table-wrapper">
     <b-table
-      class="table table-striped" id="table1"
+      class="table table-striped table-borderless" id="table1"
       :items="tableData"
       :fields="tableHeaders"
       :current-page="currentPage"
@@ -18,7 +18,7 @@
         </b-button>
       </template>
     </b-table>
-    <b-pagination :per-page="perPage"
+    <b-pagination class="justify-content-center w-100" :per-page="perPage"
                   v-model="currentPage"
                   :total-rows="tableData.length">
     </b-pagination>

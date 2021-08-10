@@ -5,6 +5,7 @@
         <!-- Insert img -->
         <router-link :to="{path: '/'}">
           <img src="../assets/img/icon.png" alt="icon">
+          <span style="font-size:14px;color:#0d6efd;">Conquer Amazon</span>
         </router-link>
       </div>
       <div class="sidebar-menu">

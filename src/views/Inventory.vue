@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="pt-4">
     <div class="text-center" v-if="loading">
       <b-spinner type="grow" label="Spinning"></b-spinner>
     </div>

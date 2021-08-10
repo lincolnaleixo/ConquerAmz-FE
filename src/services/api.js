@@ -12,3 +12,4 @@ export const SetUserConfig = `${process.env.VUE_APP_API_ENDPOINT}/api/user/save-
 
 export const GetInventories = `${process.env.VUE_APP_API_ENDPOINT}/api/inventories/get-inventories`;
 export const GetOrders = `${process.env.VUE_APP_API_ENDPOINT}/api/get-orders`;
+export const GetLatestOrders = `${process.env.VUE_APP_API_ENDPOINT}/api/get-latest-orders`;

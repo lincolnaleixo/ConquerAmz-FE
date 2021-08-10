@@ -1,5 +1,5 @@
 <template>
-  <div class="table-wrapper">
+  <div class="table-wrapper pt-4 text-center">
     <div class="text-center" v-if="loading">
       <b-spinner type="grow" label="Spinning"></b-spinner>
     </div>
@@ -10,10 +10,10 @@
       :per-page="perPage"
       :items="tableData" :fields="cols">
       <template #cell(OrderTotal)="data">
-        <strong>{{ data.value.Amount }}</strong>{{ data.value.CurrencyCode }}
+        <strong>{{ data.value.Amount }}</strong>&nbsp;{{ data.value.CurrencyCode }}
       </template>
     </b-table>
-    <b-pagination :per-page="perPage"
+    <b-pagination class="justify-content-center w-100" :per-page="perPage"
                   v-model="currentPage"
                   :total-rows="tableData.length">
     </b-pagination>
