@@ -1,6 +1,9 @@
 <template>
   <section>
-    <DataTable :table-data="inventories"></DataTable>
+    <div class="text-center" v-if="loading">
+      <b-spinner type="grow" label="Spinning"></b-spinner>
+    </div>
+    <DataTable v-else :table-data="inventories" :table-headers="columns"></DataTable>
   </section>
 </template>
 <script>
@@ -14,17 +17,38 @@ export default {
   },
   data() {
     return {
+      loading: false,
       inventories: [],
+      columns: [
+        {
+          key: 'sellerSku',
+        },
+        {
+          key: 'lastUpdatedTime',
+          label: 'Last Updated Time',
+          sortable: true,
+        },
+        {
+          key: 'productName',
+        },
+        {
+          key: 'totalQuantity',
+          sortable: true,
+        },
+      ],
     };
   },
   methods: {
     getInventories(userId) {
       if (!userId) return false;
+      this.loading = true;
       return InventoryServices.getInventories(userId).then(({ data }) => {
+        this.loading = false;
         if (data && data.length > 0) {
           this.inventories = data[0].inventorySummaries || [];
         }
       }).catch((err) => {
+        this.loading = false;
         console.log('error happened while getting inventories: ', JSON.stringify(err));
       });
     },

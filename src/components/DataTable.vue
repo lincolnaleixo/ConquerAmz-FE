@@ -11,12 +11,17 @@
       show-empty
       small
       @filtered="onFiltered">
+      <slot></slot>
       <template #cell(actions)="row">
         <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
           Action
         </b-button>
       </template>
     </b-table>
+    <b-pagination :per-page="perPage"
+                  v-model="currentPage"
+                  :total-rows="tableData.length">
+    </b-pagination>
   </div>
 </template>
 <script>
