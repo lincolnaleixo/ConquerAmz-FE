@@ -5,6 +5,7 @@
         <!-- Insert img -->
         <router-link :to="{path: '/'}">
           <img src="../assets/img/icon.png" alt="icon">
+          <span style="font-size:14px;color:#0d6efd;">Conquer Amazon</span>
         </router-link>
       </div>
       <div class="sidebar-menu">
@@ -12,7 +13,7 @@
           <li class="sidebar-title text-left">Main Menu</li>
           <slot v-if="isUserLoggedIn">
             <li class="sidebar-item">
-              <router-link :to="{path: '/home'}"
+              <router-link :to="{path: '/'}"
                            :class="$route.name === 'Home' ? 'sidebar-link active' : 'sidebar-link'">
                 <b-icon icon="house"></b-icon>
                 <span>Home</span>

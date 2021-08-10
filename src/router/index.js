@@ -8,9 +8,13 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home,
+    beforeRouteEnter: (to, from, next) => {
+      const isLoggedIn = localStorage.getItem('ConquerAmazonUserId');
+      return isLoggedIn ? next() : next('/login');
+    },
   },
   {
     path: '/about',

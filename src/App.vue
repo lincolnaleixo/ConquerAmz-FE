@@ -51,7 +51,7 @@ export default {
     checkUser() {
       this.$store.dispatch('checkToken')
         .then((res) => {
-          if (res) this.$router.push({ path: '/home' });
+          if (res) this.$router.push({ path: '/' });
           else this.$router.push({ path: '/' });
         })
         .catch((err) => {

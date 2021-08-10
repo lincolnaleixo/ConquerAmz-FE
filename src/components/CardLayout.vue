@@ -5,75 +5,17 @@
     </div>
     <div class="card-body p-0">
       <slot v-if="cardType === 'table'">
-        <div class="table-responsive">
-<!--          <b-table class="table" id="table1"></b-table>-->
-          <div class="table-responsive">
-            <table class="table table-borderless mb-0">
-              <thead>
-              <tr>
-                <th>NAME</th>
-                <th>RATE</th>
-                <th>SKILL</th>
-                <th>TYPE</th>
-                <th>LOCATION</th>
-                <th>ACTION</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td class="text-bold-500">Michael Right</td>
-                <td>$15/hr</td>
-                <td class="text-bold-500">UI/UX</td>
-                <td>Remote</td>
-                <td>Austin,Taxes</td>
-                <td><a href="#"><i
-                  class="badge-circle badge-circle-light-secondary font-medium-1"
-                  data-feather="mail"></i></a></td>
-              </tr>
-              <tr>
-                <td class="text-bold-500">Morgan Vanblum</td>
-                <td>$13/hr</td>
-                <td class="text-bold-500">Graphic concepts</td>
-                <td>Remote</td>
-                <td>Shangai,China</td>
-                <td><a href="#"><i
-                  class="badge-circle badge-circle-light-secondary font-medium-1"
-                  data-feather="mail"></i></a></td>
-              </tr>
-              <tr>
-                <td class="text-bold-500">Tiffani Blogz</td>
-                <td>$15/hr</td>
-                <td class="text-bold-500">Animation</td>
-                <td>Remote</td>
-                <td>Austin,Texas</td>
-                <td><a href="#"><i
-                  class="badge-circle badge-circle-light-secondary font-medium-1"
-                  data-feather="mail"></i></a></td>
-              </tr>
-              <tr>
-                <td class="text-bold-500">Ashley Boul</td>
-                <td>$15/hr</td>
-                <td class="text-bold-500">Animation</td>
-                <td>Remote</td>
-                <td>Austin,Texas</td>
-                <td><a href="#"><i
-                  class="badge-circle badge-circle-light-secondary font-medium-1"
-                  data-feather="mail"></i></a></td>
-              </tr>
-              <tr>
-                <td class="text-bold-500">Mikkey Mice</td>
-                <td>$15/hr</td>
-                <td class="text-bold-500">Animation</td>
-                <td>Remote</td>
-                <td>Austin,Texas</td>
-                <td><a href="#"><i
-                  class="badge-circle badge-circle-light-secondary font-medium-1"
-                  data-feather="mail">
-                </i></a></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="table-responsive px-4">
+          <b-table
+            class="table table-striped"
+            :items="cardData" :fields="orderCols">
+            <template #cell(OrderTotal)="data">
+              <strong>{{ data.value.Amount }}</strong>&nbsp;{{ data.value.CurrencyCode }}
+            </template>
+            <template #cell(IsPrime)="data">
+              <b-checkbox disabled :value="data.value"></b-checkbox>
+            </template>
+          </b-table>
         </div>
       </slot>
       <slot v-else-if="cardType === 'statistics'">
@@ -99,8 +41,48 @@ export default {
       type: String,
     },
     cardData: {
-      type: Object,
+      type: Array,
     },
+  },
+  data() {
+    return {
+      orderCols: [
+        {
+          key: 'AmazonOrderId',
+          label: 'Amazon Order Id',
+        },
+        {
+          key: 'OrderType',
+          label: 'Order Type',
+          sortable: true,
+        },
+        {
+          key: 'OrderTotal',
+          label: 'Order Total',
+          sortable: true,
+        },
+        {
+          key: 'EarliestShipDate',
+          label: 'Earliest Ship Date',
+          sortable: true,
+        },
+        {
+          key: 'LatestShipDate',
+          label: 'Latest Ship Date',
+          sortable: true,
+        },
+        {
+          key: 'PurchaseDate',
+          label: 'Purchase Date',
+          sortable: true,
+        },
+        {
+          key: 'IsPrime',
+          label: 'Prime?',
+          sortable: true,
+        },
+      ],
+    };
   },
   computed: {
     cardClass() {

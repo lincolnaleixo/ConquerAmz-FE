@@ -9,3 +9,7 @@ export const GetUser = `${process.env.VUE_APP_API_ENDPOINT}/api/user/me`;
 
 export const GetUserConfig = `${process.env.VUE_APP_API_ENDPOINT}/api/user/get-sp-auth`;
 export const SetUserConfig = `${process.env.VUE_APP_API_ENDPOINT}/api/user/save-sp-auth`;
+
+export const GetInventories = `${process.env.VUE_APP_API_ENDPOINT}/api/inventories/get-inventories`;
+export const GetOrders = `${process.env.VUE_APP_API_ENDPOINT}/api/get-orders`;
+export const GetLatestOrders = `${process.env.VUE_APP_API_ENDPOINT}/api/get-latest-orders`;

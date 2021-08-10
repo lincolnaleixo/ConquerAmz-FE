@@ -23,13 +23,14 @@ const actions = {
   },
   async logoutUser({ commit, dispatch }) {
     localStorage.setItem('jwtToken', '');
+    localStorage.setItem('ConquerAmazonUserId', '');
     commit('TOGGLE_USER_LOGGED_IN');
     dispatch('notify', {
       type: 'info',
       text: 'You Logged out successfully!',
       title: 'Bye!',
     });
-    await router.replace({ path: '/' });
+    await router.push({ path: '/auth/login' });
   },
   async checkToken({ state }) {
     const token = localStorage.getItem('jwtToken') || state.userToken;
@@ -38,7 +39,13 @@ const actions = {
   },
   getUserData({ commit }) {
     UserServices.getUserDetails()
-      .then((res) => commit('SET_USER', res))
+      .then((res) => {
+        commit('SET_USER', res);
+        // eslint-disable-next-line no-underscore-dangle
+        localStorage.setItem('ConquerAmazonUserId', res._id);
+        // eslint-disable-next-line no-underscore-dangle
+        return res._id;
+      })
       .catch(() => {});
   },
 };
