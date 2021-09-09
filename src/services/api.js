@@ -1,5 +1,7 @@
+import { apiUrl } from '../../config';
+
 export const testApi = 'http://localhost:3000';
-const BaseUrl = process.env?.VUE_APP_API_ENDPOINT || 'http://localhost:3000';
+const BaseUrl = apiUrl.length ? apiUrl : 'http://localhost:3001';
 
 export const allUsers = `${BaseUrl}/api/v1/users`;
 export const user = `${BaseUrl}/api/v1/user`;

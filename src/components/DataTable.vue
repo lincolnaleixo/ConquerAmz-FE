@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     info(...args) {
-      console.log(...args);
+      // console.log(...args);
       this.$emit('actionFor', { ...args });
     },
     onFiltered() {
