@@ -83,9 +83,9 @@ export default {
         if (data && data.length > 0) {
           this.orders = data[0].awsOrders || data[0].orders;
         }
-      }).catch((err) => {
+      }).catch(() => {
         this.loading = false;
-        console.log('error happened while getting orders: ', JSON.stringify(err));
+        // console.log('error happened while getting orders: ', JSON.stringify(err));
       });
     },
   },

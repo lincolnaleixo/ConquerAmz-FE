@@ -47,9 +47,9 @@ export default {
         if (data && data.length > 0) {
           this.inventories = data[0].inventorySummaries || [];
         }
-      }).catch((err) => {
+      }).catch(() => {
         this.loading = false;
-        console.log('error happened while getting inventories: ', JSON.stringify(err));
+        // console.log('error happened while getting inventories: ', JSON.stringify(err));
       });
     },
   },

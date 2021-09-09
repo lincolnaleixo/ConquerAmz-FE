@@ -135,8 +135,8 @@ export default {
           }
           this.loading = false;
         })
-        .catch((err) => {
-          console.log('error: ', err);
+        .catch(() => {
+          // console.log('error: ', err);
           this.loading = false;
           this.notify({
             type: 'error',

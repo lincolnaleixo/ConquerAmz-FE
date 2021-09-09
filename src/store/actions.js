@@ -8,7 +8,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       TestService.testApi()
         .then((res) => {
-          console.log('API response from b.e.: ', res);
+          // console.log('API response from b.e.: ', res);
           resolve(res);
         })
         .catch((err) => {
