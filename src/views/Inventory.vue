@@ -49,7 +49,6 @@ export default {
         }
       }).catch(() => {
         this.loading = false;
-        // console.log('error happened while getting inventories: ', JSON.stringify(err));
       });
     },
   },

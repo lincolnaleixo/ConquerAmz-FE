@@ -85,7 +85,6 @@ export default {
         }
       }).catch(() => {
         this.loading = false;
-        // console.log('error happened while getting orders: ', JSON.stringify(err));
       });
     },
   },

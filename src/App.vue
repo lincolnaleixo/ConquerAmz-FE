@@ -54,9 +54,7 @@ export default {
           if (res) this.$router.push({ path: '/' });
           else this.$router.push({ path: '/' });
         })
-        .catch(() => {
-          // console.log('token error: ', err);
-        });
+        .catch(() => {});
     },
   },
   async mounted() {

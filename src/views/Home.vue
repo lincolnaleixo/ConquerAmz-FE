@@ -50,9 +50,7 @@ export default {
         .then(({ data }) => {
           this.orders = data;
         })
-        .catch(() => {
-          // console.log(err)
-        });
+        .catch(() => {});
     },
   },
   async mounted() {
