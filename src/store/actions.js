@@ -21,7 +21,7 @@ const actions = {
     Vue.notify(notifObj);
   },
   async logoutUser({ commit, dispatch }) {
-    localStorage.setItem('jwtToken', '');
+    localStorage.removeItem('jwtToken');
     localStorage.setItem('ConquerAmazonUserId', '');
     commit('TOGGLE_USER_LOGGED_IN');
     dispatch('notify', {
