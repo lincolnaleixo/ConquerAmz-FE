@@ -20,7 +20,7 @@ Vue.use(Vuelidate);
 Vue.use(Notifications);
 Vue.component('data-table', DataTable);
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = process.env.NODE_ENV === 'dev';
 
 new Vue({
   router,

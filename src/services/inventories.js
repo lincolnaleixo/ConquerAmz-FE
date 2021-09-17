@@ -1,17 +1,11 @@
-import axios from 'axios';
+// import axios from 'axios';
+import Http from './http';
 import { GetInventories, GetOrders, GetLatestOrders } from './api';
 
 export default {
   getInventories(userId) {
     return new Promise((resolve, reject) => {
-      const token = localStorage.getItem('jwtToken');
-      const bearer = `Bearer ${token}`;
-      const config = {
-        headers: {
-          Authorization: bearer,
-        },
-      };
-      axios.get(`${GetInventories}?userId=${userId}`, config)
+      Http.get(`${GetInventories}?userId=${userId}`)
         .then((res) => {
           resolve(res);
         })
@@ -20,14 +14,7 @@ export default {
   },
   getOrders(userId) {
     return new Promise((resolve, reject) => {
-      const token = localStorage.getItem('jwtToken');
-      const bearer = `Bearer ${token}`;
-      const config = {
-        headers: {
-          Authorization: bearer,
-        },
-      };
-      axios.get(`${GetOrders}?userId=${userId}`, config)
+      Http.get(`${GetOrders}?userId=${userId}`)
         .then((res) => {
           resolve(res);
         })
@@ -36,14 +23,7 @@ export default {
   },
   getLatestOrders(userId) {
     return new Promise((resolve, reject) => {
-      const token = localStorage.getItem('jwtToken');
-      const bearer = `Bearer ${token}`;
-      const config = {
-        headers: {
-          Authorization: bearer,
-        },
-      };
-      axios.get(`${GetLatestOrders}?userId=${userId}`, config)
+      Http.get(`${GetLatestOrders}?userId=${userId}`)
         .then((res) => {
           resolve(res);
         })

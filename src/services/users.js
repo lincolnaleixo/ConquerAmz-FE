@@ -5,14 +5,22 @@ import { LoginUser, RegisterUser } from './api';
 export default {
   createUser(userObject) {
     return new Promise((resolve, reject) => {
-      axios.post(RegisterUser, userObject)
+      axios.post(RegisterUser, userObject, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      })
         .then((res) => resolve(res))
         .catch((err) => reject(err));
     });
   },
   loginUser(userObject) {
     return new Promise((resolve, reject) => {
-      axios.post(LoginUser, userObject)
+      axios.post(LoginUser, userObject, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      })
         .then((res) => resolve(res))
         .catch((err) => reject(err));
     });

@@ -1,18 +1,11 @@
-import axios from 'axios';
+import Http from './http';
 import { GetUserConfig, SetUserConfig } from './api';
 
 export default {
   getUserConfig(userId) {
     const urlPar = `${GetUserConfig}?userId=${userId}`;
-    const token = localStorage.getItem('jwtToken');
-    const bearer = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: bearer,
-      },
-    };
     return new Promise((resolve, reject) => {
-      axios.get(urlPar, config)
+      Http.get(urlPar)
         .then((res) => {
           resolve(res);
         })
@@ -20,15 +13,8 @@ export default {
     });
   },
   setUserConfig(configObject) {
-    const token = localStorage.getItem('jwtToken');
-    const bearer = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: bearer,
-      },
-    };
     return new Promise((resolve, reject) => {
-      axios.post(SetUserConfig, configObject, config)
+      Http.post(SetUserConfig, configObject)
         .then((res) => {
           resolve(res);
         })
